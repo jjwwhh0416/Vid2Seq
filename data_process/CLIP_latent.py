@@ -46,6 +46,10 @@ with torch.no_grad():
 
         feat = model.get_image_features(**inputs)
 
+        print(type(feat))
+        print(feat)
+        break
+
         # CLIP feature normalization
         feat = feat / feat.norm(dim=-1, keepdim=True)
 
