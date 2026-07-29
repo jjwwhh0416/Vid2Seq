@@ -44,13 +44,8 @@ with torch.no_grad():
             return_tensors="pt"
         ).to(device)
 
-        feat = model.get_image_features(**inputs)
+        feat = model.get_image_features(**inputs).pooler_output
 
-        print(type(feat))
-        print(feat)
-        break
-
-        # CLIP feature normalization
         feat = feat / feat.norm(dim=-1, keepdim=True)
 
         features.append(feat.cpu().numpy()[0])
